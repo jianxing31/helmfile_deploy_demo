@@ -1,0 +1,11 @@
+environments:
+  dev:
+  prod:
+
+releases:
+  - name: demo-{{ .Environment.Name }}
+    namespace: {{ .Environment.Name }}
+    chart: charts/demo
+    values:
+      - ./demo_values/demo_default.yaml
+      - ./demo_values/demo_{{ .Environment.Name }}.yaml
