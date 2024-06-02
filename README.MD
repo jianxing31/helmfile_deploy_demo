@@ -62,11 +62,7 @@ helmfile -e dev apply
 ```
 
 ### 2. Check services deployed
-Check node port with the following command. We can access the api with link `http://localhost:$nodeport` from broswer.
-```shell
- kubectl get --namespace dev -o jsonpath="{.spec.ports[0].nodePort}" services demo-dev
-```
-Alternatively, we can use port-forward and access the api with link `http://localhost:8080`:
+We can use port-forward and access the api with link `http://localhost:8080`:
 ```shell
 export POD_NAME=$(kubectl get pods --namespace dev -l "app.kubernetes.io/name=demo,app.kubernetes.io/instance=demo-dev" -o jsonpath="{.items[0].metadata.name}")
 export CONTAINER_PORT=$(kubectl get pod --namespace dev $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
